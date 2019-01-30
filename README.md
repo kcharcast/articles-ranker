@@ -1,11 +1,16 @@
-Readable - submission for Redux React Nano Degree project
+# articles-ranker
 * Install and start the API server
     - `cd backend`
-    - `npm install`
-    - `node server`
+    - `yarn install`
+    - `yarn start`
 * In another terminal window, use Create React App to scaffold out the front-end
 `
     - `cd frontend`
-    - `npm install`
-    - `npm start`
-# articles-ranker
+    - `yarn install`
+    - `yarn start`
+
+ cypress tests
+    - yarn cypress
+
+unit tests 
+    - yarn test
