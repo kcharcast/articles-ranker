@@ -67,7 +67,7 @@ describe('The header on the fifth article', () => {
   });
  
   it('it counts the number of read articles correctly', () => {
-    expect(wrapper.find('h4').contains('Now please rank the articles 5 you have read')).toBe(true);
+    expect(wrapper.find('h4').contains('Now please rank the 5 articles you have read')).toBe(true);
   });
   
   it('it has the navbar', () => {
@@ -110,7 +110,7 @@ describe('Render correctly when the articles are being ranked', () => {
   });
  
   it('it counts the number of read articles correctly', () => {
-    expect(wrapper.find('h4').contains('Now please rank the articles 5 you have read')).toBe(true);
+    expect(wrapper.find('h4').contains('Now please rank the 5 articles you have read')).toBe(true);
   });
   
   it('it has the navbar', () => {

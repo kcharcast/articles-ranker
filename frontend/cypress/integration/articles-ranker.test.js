@@ -15,11 +15,8 @@ describe('Test article ranker', () => {
    
   });
   
-
   it('displays 5 articles 1 at a time', () => {
-   
     cy.get('.navbar');
-    
     cy.contains('You have read 1 of 5 articles');
     cy.get('.btn').click();
 
@@ -36,7 +33,7 @@ describe('Test article ranker', () => {
     cy.get('.btn').click();
 
     cy.get('.navbar');
-    cy.contains('Now please rank the 5 out 5 articles you have read')
+    cy.contains('Now please rank the 5 articles you have read')
     cy.get('.btn').click();
 
 
@@ -55,9 +52,10 @@ describe('Test article ranker', () => {
 
 });
 
-describe('Ranking sectin works as expected', ()=>{
+describe('Ranking section renders as expected', ()=>{
   beforeEach(()=>{
-  
+    cy.clock()
+
     cy.visit('http://localhost:3000')
     cy.server();
     cy.route('posts/1', 'fixture:post1.json');
@@ -76,35 +74,47 @@ describe('Ranking sectin works as expected', ()=>{
 
   it('component is there', () => {
     cy.get('.sc-bwzfXH').contains('Articles drag and drop')
-   
-
+  
   });
 
   it('article titles are there', () => {
-  //  cy.get(':nth-child(1) > .sc-bdVaJa').contains('1')
+    cy.get(':nth-child(1) > .sc-bdVaJa').contains('Lorem ipsum dolor sit amet, consectetur adipiscing elit')
+    cy.get(':nth-child(2) > .sc-bdVaJa').contains('Praesent bibendum nec velit a fringilla. Nulla facilisi')
+    cy.get(':nth-child(3) > .sc-bdVaJa').contains('Vestibulum posuere orci ullamcorper nisi porta, sit amet tempus nibh porta')
+    cy.get(':nth-child(4) > .sc-bdVaJa').contains('Maecenas venenatis lorem ut erat dictum, sed varius est porta')
+    cy.get(':nth-child(5) > .sc-bdVaJa').contains('Nulla nibh erat, pharetra at ultricies nec, tincidunt luctus arcu')
    
-
+  
   });
+
+  it("can be dragged and dropped",()=>{
+
+
+    cy.get(':nth-child(1) > .sc-bdVaJa')
+        .trigger('mousedown', { clientX: 0, clientY: 0 })
+        .trigger('mousemove', { clientX: 0, clientY: 500 })
+        .trigger('drop', {force: true})
+        .tick(200)
+
+
+    cy.get(':nth-child(2) > .sc-bdVaJa').first()
+    .trigger('dragstart')
+    cy.get(':nth-child(3) > .sc-bdVaJa')
+    .trigger('drop')
+
+
+    cy.get(':nth-child(1) > .sc-bdVaJa').first()
+    .trigger('dragstart')
+    cy.get(':nth-child(5) > .sc-bdVaJa')
+    .trigger('drop')
+
+    cy.get(':nth-child(4) > .sc-bdVaJa').first()
+    .trigger('dragstart')
+    cy.get(':nth-child(3) > .sc-bdVaJa')
+    .trigger('drop')
+    cy.clock()
+    cy.tick(200)
+  })
+  
+
 })
-
-
-
-
-
-/*
-Start again
-Now please rank the 5 out 5 articles you have read
-Articles drag and drop
-1
-Lorem ipsum dolor sit amet, consectetur adipiscing elit
-2
-Praesent bibendum nec velit a fringilla. Nulla facilisi
-3
-Vestibulum posuere orci ullamcorper nisi porta, sit amet tempus nibh porta
-4
-Maecenas venenatis lorem ut erat dictum, sed varius est porta
-5
-Nulla nibh erat, pharetra at ultricies nec, tincidunt luctus arcu
-You have dropped the item. You have moved the item from position 1 to position 1
-
-*/

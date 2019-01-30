@@ -88,7 +88,7 @@ class Header extends Component {
           {numberOfPostsRead > 4  && (
             <h4 className="text-center pt-3">
               {' '}
-              Now please rank the articles 5 you have read
+              Now please rank the 5 articles you have read
             </h4>
             
           )}
