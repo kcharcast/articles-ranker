@@ -3,7 +3,7 @@
     - `cd backend`
     - `yarn install`
     - `yarn start`
-* In another terminal window, use Create React App to scaffold out the front-end
+* In another terminal window, install and start front-end
 `
     - `cd frontend`
     - `yarn install`
